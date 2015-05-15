@@ -1,0 +1,12 @@
+{
+    "id":           "customerreviews",
+	"type":         "mod",
+    "name":         "Customer opinions beta",
+    "description":  "Module Customer Reviews !!",
+    "icon_url":     "icon.png",
+    "homepage_url": "http://github.com/boxbillinggit/",
+    "author":       "zaha",
+    "author_url":   "http://boxbilling.com.pl/",
+    "license":      "GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+    "version":      "1.1.0"
+}

@@ -1,0 +1,46 @@
+{% extends request.ajax ? "layout_blank.phtml" : "layout_default.phtml" %}
+
+{% block meta_title %}{% trans 'Dodawanie Opini' %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <article class="span12 data-block">
+        <div class="data-container">
+            <header>
+                <h1>{% trans 'Customer Reviews Add' %}</h1>
+                {% if client %}
+                <ul class="data-header-actions">
+                    <li>
+                        <a class="btn btn-alt btn-info" href="{{ '/customerreviews'|link }}" id="new-ticket-button" data-toggle="modal">{% trans 'Customer Reviews' %}</a>
+                    </li>
+                </ul>
+                {% endif %}
+            </header>
+            <section>
+   
+            <form method="post" action="{{ 'api/client/customerreviews/opinie_add'|link }}" class="api-form" data-api-redirect="{{ '/customerreviews'|link }}">
+                <fieldset>
+                    <p>
+                        <label>Nazwa: </label>
+                        <input type="text" name="name" value="{{ profile.first_name }} {{ profile.last_name }}">
+                    </p>
+
+                    <p>
+                        <label>Wiadomość: </label>
+                        <textarea name="message" cols="5" rows="5" required></textarea>
+                    </p>
+
+                    
+
+
+                    <input class="bb-button bb-button-submit" type="submit" value="{% trans 'Add' %}">
+                    
+                </fieldset>
+
+                
+                </form>
+   
+       </section>
+    </div></article>
+</div>
+{% endblock %}

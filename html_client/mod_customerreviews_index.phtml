@@ -1,0 +1,43 @@
+{% extends request.ajax ? "layout_blank.phtml" : "layout_default.phtml" %}
+
+{% block meta_title %}{{ opinieklientow.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <article class="span12 data-block">
+        <div class="data-container">
+            <header>
+                <h1>{{ opinieklientow.title }}</h1>
+                {% if client %}
+                <ul class="data-header-actions">
+                    <li>
+                        <a class="btn btn-alt btn-info" href="{{ '/customerreviews/add'|link }}" id="new-ticket-button" data-toggle="modal">{% trans 'Dodaj Opinie' %}</a>
+                    </li>
+                </ul>
+                {% endif %}
+            </header>
+            <section>
+                <div class="block articles">
+
+                    {% for opinia in opinie %}
+                <div class="article">
+                    <h2>{{ opinia.imie_nazwisko }}</h2>
+                    <p>{{ opinia.text }}</p>
+
+                    <p class="meta">{{ opinia.date }}</p>
+                </div>
+                    {% else %}
+                        <p><div class="alert alert-info" id="information-block">{% trans 'The list is empty' %}</div></p>
+                    {% endfor %}
+
+                </div>
+                                
+            </section>
+    </div></article>
+</div>
+{% endblock %}
+
+
+{% block js %}
+
+{% endblock %}

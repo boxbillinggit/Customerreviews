@@ -1,0 +1,48 @@
+{% extends request.ajax ? "layout_blank.phtml" : "layout_default.phtml" %}
+
+{% block meta_title %}{% trans 'Opinie Klientów' %}{% endblock %}
+
+{% set active_menu = 'customerreviews' %}
+
+{% block content %}
+<div class="widget">
+    <div class="head">
+        <h5>{% trans 'Opinie Klientów' %}</h5>
+    </div>
+<table class="tableStatic wide">
+                <thead>
+                    <tr>
+                        <td>{% trans 'Imie Nazwisko' %}</td>
+                        <td><i class="icon-user"></i> {% trans 'Text' %}</td>
+                        <td>{% trans 'Data' %}</td>
+                        <td>{% trans 'Status' %}</td>
+                        <td style="width: 5%">&nbsp;</td>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                {% for opinia in opinie %}
+										<tr>
+											<td class="highlight"  width="150">
+												{{opinia.imie_nazwisko}}
+											</td>
+											<td class="hidden-phone">{{opinia.text}}</td>
+											<td>{{opinia.date}}</td>
+                                            <td width="80">{% if opinia.active == '1' %} Aktywna {% else %} Nie Aktywna {% endif %}</td>
+                                            
+											<td width="65">
+                                            {% if opinia.active == '1' %} 
+                                            <a class="bb-button btn14 bb-rm-tr api-link" href="admin/customerreviews/deactive?id={{opinia.id}}" data-api-redirect="customerreviews"><img src="images/icons/dark/blocks.png"></a>
+                                            {% else %}
+                                            <a class="bb-button btn14 bb-rm-tr api-link" data-api-redirect="{{ 'customerreviews'|alink }}" href="{{ 'api/admin/customerreviews/active'|link({'id' : opinia.id}) }}"><img src="images/icons/dark/unlocked.png" alt=""></a>
+                                            {% endif %}
+                                            <a class="bb-button btn14 bb-rm-tr api-link" data-api-confirm="{% trans 'Are you sure?' %}" data-api-redirect="{{ 'customerreviews'|alink }}" href="{{ 'api/admin/customerreviews/delete'|link({'id' : opinia.id}) }}"><img src="images/icons/dark/trash.png" alt=""></a>
+                                            </td>
+										</tr>
+								    {% endfor %}
+									</tbody>
+								</table>    
+                    
+
+</div>
+{% endblock %}
